@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
-export const Container = styled.div`
+export const Container = styled(motion.div)`
   color: #e6e6e6;
   position: relative;
   width: 100%;
@@ -24,7 +25,7 @@ export const Header = styled.header`
   }
 `;
 
-export const Partners = styled.section`
+export const Partners = styled(motion.ul)`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;

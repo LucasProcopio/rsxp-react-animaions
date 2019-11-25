@@ -1,14 +1,16 @@
 import styled, { css } from 'styled-components';
 import { darken, lighten } from 'polished';
 
-export const FullScreen = styled.div`
+import { motion } from 'framer-motion';
+
+export const FullScreen = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.7);
-  display: ${p => (p.open === 1 ? 'flex' : 'none')};
+  display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9999;
@@ -35,22 +37,6 @@ export const FullScreen = styled.div`
     position: relative;
     cursor: default;
     animation: slideIn 350ms cubic-bezier(0.42, 0, 0.21, 1) 1;
-
-    @keyframes slideIn {
-      from {
-        transform: translateY(-120px);
-        opacity: 0;
-      }
-
-      20% {
-        opacity: 0;
-      }
-
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
 
     header {
       padding: 4.8rem;

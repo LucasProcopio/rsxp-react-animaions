@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@rocketseat/unform": "^1.6.1",
+    "framer-motion": "^1.6.17",
     "history": "^4.10.1",
     "lodash": "^4.17.15",
     "polished": "^3.4.2",

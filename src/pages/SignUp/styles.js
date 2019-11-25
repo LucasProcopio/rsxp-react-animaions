@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
-export const LeftContainer = styled.aside`
+export const LeftContainer = styled(motion.aside)`
   max-width: 500px;
   width: 100%;
   padding: 4rem 3.6rem;
@@ -27,7 +28,7 @@ export const LeftContainer = styled.aside`
   }
 `;
 
-export const RightContainer = styled.main`
+export const RightContainer = styled(motion.main)`
   width: 100%;
   padding: 4rem 3.6rem;
   display: flex;

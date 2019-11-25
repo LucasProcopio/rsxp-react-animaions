@@ -6,6 +6,7 @@ import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
 import { FaCheckCircle } from 'react-icons/fa';
 import { LeftContainer, RightContainer } from './styles';
 
+import { spring } from '../../utils/animations';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import Modal from '../../components/Modal';
@@ -49,9 +50,17 @@ export default function SignUp({ history }) {
     setUserData(data);
   }
 
+  const leftTransition = {
+    hidden: { x: -500 },
+    visible: {
+      ...spring,
+      stiffness: 80,
+    },
+  };
+
   return (
     <>
-      <LeftContainer>
+      <LeftContainer initial="hidden" visible="animate">
         <header>
           <Button
             secondary
