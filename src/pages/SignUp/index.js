@@ -90,15 +90,9 @@ export default function SignUp({ history }) {
         <section>
           <h3>Inscreva-se na Rocketseat</h3>
           <section>
-            <Button icon="FaGoogle" onClick={() => {}}>
-              Entrar com Google
-            </Button>
-            <Button color="#373546" icon="FaTwitter" onClick={() => {}} />
-            <Button
-              color="#373546"
-              icon="FaFacebookSquare"
-              onClick={() => {}}
-            />
+            <Button icon="FaGoogle">Entrar com Google</Button>
+            <Button color="#373546" icon="FaTwitter" />
+            <Button color="#373546" icon="FaFacebookSquare" />
           </section>
 
           <div>
