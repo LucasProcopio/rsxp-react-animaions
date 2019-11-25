@@ -67,7 +67,16 @@ export default function SignUp({ history }) {
           />
         </h1>
 
-        <small>Made with Love by Rocketseat</small>
+        <small>
+          Made by{' '}
+          <a
+            href="https://github.com/lukemorales"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Luke Morales
+          </a>
+        </small>
       </LeftContainer>
 
       <RightContainer>
