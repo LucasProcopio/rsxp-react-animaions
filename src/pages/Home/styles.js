@@ -40,7 +40,7 @@ export const Partners = styled(motion.ul)`
   }
 `;
 
-export const Partner = styled.div`
+export const Partner = styled(motion.li)`
   width: 13%;
   background: #1b1a1f;
   height: 10rem;

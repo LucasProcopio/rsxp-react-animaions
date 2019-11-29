@@ -30,6 +30,26 @@ export default function Home() {
       },
     },
   };
+
+  const listHeaderAnimation = {
+    hidden: {
+      opacity: 0,
+      x: -200,
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        delay: 0.785,
+      },
+    },
+  };
+
+  const itemsAnimation = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0 },
+  };
+
   return (
     <>
       <Container>
@@ -52,17 +72,21 @@ export default function Home() {
           </Button>
         </Header>
         <BannerGrid banners={banners} />
-        <h2>
+        <motion.h2
+          initial="hidden"
+          animate="visible"
+          variants={listHeaderAnimation}
+        >
           Apoiadores
           <Button inline onClick={() => setPartners(shuffle(partnersList))}>
             Randomizar
           </Button>
-        </h2>
+        </motion.h2>
         <Partners initial="hidden" animate="visible" variants={listAnimation}>
           {partners.map(partner => (
             <Partner
               key={partner.name}
-              // variants={itemsAnimation}
+              variants={itemsAnimation}
               layoutTransition={spring}
             >
               <img alt={partner.name} src={partner.src} />

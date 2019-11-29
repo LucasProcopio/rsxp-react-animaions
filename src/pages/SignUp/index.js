@@ -4,6 +4,7 @@ import { Form } from '@rocketseat/unform';
 import * as Yup from 'yup';
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
 import { FaCheckCircle } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 import { LeftContainer, RightContainer } from './styles';
 
 import { spring } from '../../utils/animations';
@@ -51,16 +52,57 @@ export default function SignUp({ history }) {
   }
 
   const leftTransition = {
-    hidden: { x: -500 },
+    hidden: { opacity: 0, x: -500 },
     visible: {
+      opacity: 1,
+      x: 0,
       ...spring,
-      stiffness: 80,
+      stiffness: 180,
+      transition: {
+        delay: 0.4,
+      },
+    },
+  };
+
+  const rightTransition = {
+    hidden: {
+      opacity: 0,
+      y: -80,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        ...spring,
+        stiffness: 40,
+        delay: 0.45,
+        staggerChildren: 0.075,
+        delayChildren: 0.5,
+      },
+    },
+  };
+
+  const childAnimation = {
+    hidden: {
+      opacity: 0,
+      y: -50,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: 0.35,
+      },
     },
   };
 
   return (
     <>
-      <LeftContainer initial="hidden" visible="animate">
+      <LeftContainer
+        initial="hidden"
+        animate="visible"
+        variants={leftTransition}
+      >
         <header>
           <Button
             secondary
@@ -77,18 +119,22 @@ export default function SignUp({ history }) {
         </h1>
 
         <small>
-          Made by{' '}
+          Animated by{' '}
           <a
-            href="https://github.com/lukemorales"
+            href="https://github.com/LucasProcopio"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Luke Morales
+            Lucas Procopio
           </a>
         </small>
       </LeftContainer>
 
-      <RightContainer>
+      <RightContainer
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ ...spring, delay: 0.5 }}
+      >
         <header>
           Já é um membro?{' '}
           <Button inline onClick={() => setIsLoginModalOpen(true)}>
@@ -96,7 +142,11 @@ export default function SignUp({ history }) {
           </Button>
         </header>
 
-        <section>
+        <motion.section
+          initial="hidden"
+          animate="visible"
+          variants={rightTransition}
+        >
           <h3>Inscreva-se na Rocketseat</h3>
           <section>
             <Button icon="FaGoogle">Entrar com Google</Button>
@@ -111,15 +161,29 @@ export default function SignUp({ history }) {
 
           <Form id="signUpForm" schema={schema} onSubmit={handleSubmit}>
             <div>
-              <Input label="Nome Completo" name="signName" />
-              <Input label="Username" name="signUsername" />
+              <Input
+                label="Nome Completo"
+                name="signName"
+                variants={childAnimation}
+              />
+              <Input
+                label="Username"
+                name="signUsername"
+                variants={childAnimation}
+              />
             </div>
-            <Input icon="MdEmail" label="Email" name="signEmail" />
+            <Input
+              icon="MdEmail"
+              label="Email"
+              name="signEmail"
+              variants={childAnimation}
+            />
             <Input
               icon="MdLock"
               label="Senha"
               name="signPassword"
               type={passwordIsVisible ? 'text' : 'password'}
+              variants={childAnimation}
             >
               <button
                 className="btn__transparent"
@@ -139,6 +203,7 @@ export default function SignUp({ history }) {
               label="Confirmar Senha"
               name="confirmPassword"
               type={confirmIsVisible ? 'text' : 'password'}
+              variants={childAnimation}
             >
               <button
                 className="btn__transparent"
@@ -157,7 +222,7 @@ export default function SignUp({ history }) {
           <Button color="#04D361" large type="submit" form="signUpForm">
             Criar conta
           </Button>
-        </section>
+        </motion.section>
       </RightContainer>
 
       <Modal
