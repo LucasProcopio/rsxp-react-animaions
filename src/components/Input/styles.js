@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
-export const Label = styled.label`
+export const Label = styled(motion.label)`
   display: flex;
   flex-direction: column-reverse;
   position: relative;

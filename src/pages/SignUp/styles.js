@@ -28,7 +28,7 @@ export const LeftContainer = styled(motion.aside)`
   }
 `;
 
-export const RightContainer = styled(motion.main)`
+export const RightContainer = styled.main`
   width: 100%;
   padding: 4rem 3.6rem;
   display: flex;

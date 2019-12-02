@@ -52,47 +52,39 @@ export default function SignUp({ history }) {
   }
 
   const leftTransition = {
-    hidden: { opacity: 0, x: -500 },
+    hidden: { opacity: 0, x: -500, y: 80 },
     visible: {
-      opacity: 1,
       x: 0,
-      ...spring,
-      stiffness: 180,
+      y: 0,
+      opacity: 1,
+      ease: 'easeInOut',
       transition: {
-        delay: 0.4,
+        type: 'spring',
+        delay: 0.5,
+        damping: 14.5,
+        stiffness: 110,
       },
     },
   };
 
   const rightTransition = {
-    hidden: {
-      opacity: 0,
-      y: -80,
-    },
+    hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      y: 0,
       transition: {
-        ...spring,
-        stiffness: 40,
-        delay: 0.45,
-        staggerChildren: 0.075,
-        delayChildren: 0.5,
+        delay: 0.3,
+        when: 'beforeChildren',
+        staggerChildren: 0.1,
       },
     },
   };
 
-  const childAnimation = {
-    hidden: {
-      opacity: 0,
-      y: -50,
-    },
+  const childTransition = {
+    hidden: { y: 20, opacity: 0 },
     visible: {
-      opacity: 1,
       y: 0,
-      transition: {
-        delay: 0.35,
-      },
+      opacity: 1,
+      delay: 0.1,
     },
   };
 
@@ -111,12 +103,16 @@ export default function SignUp({ history }) {
             iconSize={24}
           />
         </header>
-        <h1>
+        <motion.h1
+          initial={{ opacity: 0, y: 200 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ ...spring, stiffness: 80, delay: 0.2 }}
+        >
           <img
             src="https://rocketseat.com.br/static/images/experience/RSXP.svg"
             alt="Rocketseat"
           />
-        </h1>
+        </motion.h1>
 
         <small>
           Animated by{' '}
@@ -130,11 +126,7 @@ export default function SignUp({ history }) {
         </small>
       </LeftContainer>
 
-      <RightContainer
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ ...spring, delay: 0.5 }}
-      >
+      <RightContainer>
         <header>
           Já é um membro?{' '}
           <Button inline onClick={() => setIsLoginModalOpen(true)}>
@@ -149,9 +141,15 @@ export default function SignUp({ history }) {
         >
           <h3>Inscreva-se na Rocketseat</h3>
           <section>
-            <Button icon="FaGoogle">Entrar com Google</Button>
-            <Button color="#373546" icon="FaTwitter" />
-            <Button color="#373546" icon="FaFacebookSquare" />
+            <Button icon="FaGoogle" onClick={() => {}}>
+              Entrar com Google
+            </Button>
+            <Button color="#373546" icon="FaTwitter" onClick={() => {}} />
+            <Button
+              color="#373546"
+              icon="FaFacebookSquare"
+              onClick={() => {}}
+            />
           </section>
 
           <div>
@@ -159,31 +157,31 @@ export default function SignUp({ history }) {
             <span>Ou</span>
           </div>
 
-          <Form id="signUpForm" schema={schema} onSubmit={handleSubmit}>
+          <Form schema={schema} onSubmit={handleSubmit}>
             <div>
               <Input
                 label="Nome Completo"
                 name="signName"
-                variants={childAnimation}
+                variants={childTransition}
               />
               <Input
                 label="Username"
                 name="signUsername"
-                variants={childAnimation}
+                variants={childTransition}
               />
             </div>
             <Input
               icon="MdEmail"
               label="Email"
               name="signEmail"
-              variants={childAnimation}
+              variants={childTransition}
             />
             <Input
               icon="MdLock"
               label="Senha"
               name="signPassword"
               type={passwordIsVisible ? 'text' : 'password'}
-              variants={childAnimation}
+              variants={childTransition}
             >
               <button
                 className="btn__transparent"
@@ -203,7 +201,7 @@ export default function SignUp({ history }) {
               label="Confirmar Senha"
               name="confirmPassword"
               type={confirmIsVisible ? 'text' : 'password'}
-              variants={childAnimation}
+              variants={childTransition}
             >
               <button
                 className="btn__transparent"
@@ -218,10 +216,10 @@ export default function SignUp({ history }) {
                 )}
               </button>
             </Input>
+            <Button color="#04D361" large type="submit">
+              Criar conta
+            </Button>
           </Form>
-          <Button color="#04D361" large type="submit" form="signUpForm">
-            Criar conta
-          </Button>
         </motion.section>
       </RightContainer>
 
