@@ -52,7 +52,7 @@ export default function SignUp({ history }) {
   }
 
   const leftTransition = {
-    hidden: { opacity: 0, x: -500, y: 80 },
+    hidden: { opacity: 0, x: -500, y: 90 },
     visible: {
       x: 0,
       y: 0,
